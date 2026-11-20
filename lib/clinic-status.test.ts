@@ -2,6 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import {
   clinicState,
+  clinicsOn,
   heroStatus,
   nextWorkingDay,
   karachiParts,
@@ -109,4 +110,14 @@ test('nextWorkingDay', () => {
   assert.equal(nextWorkingDay(SAT, BOTH), MON);
   assert.equal(nextWorkingDay(SAT, REAL), SUN);
   assert.equal(nextWorkingDay(3, []), 3);
+});
+
+test('clinicsOn keeps only the clinics that work that day', () => {
+  // The real schedules: Hayat is off on Friday, Dua on Sunday.
+  const hayat = { id: 'hayat', openMin: 720, closeMin: 1020, days: [true, true, true, true, true, false, true] } as const;
+  const dua = { id: 'dua', openMin: 1200, closeMin: 1290, days: [false, true, true, true, true, true, true] } as const;
+  const FRI = 5;
+  assert.deepEqual(clinicsOn(FRI, [hayat, dua]).map((c) => c.id), ['dua']);
+  assert.deepEqual(clinicsOn(SUN, [hayat, dua]).map((c) => c.id), ['hayat']);
+  assert.deepEqual(clinicsOn(MON, [hayat, dua]).map((c) => c.id), ['hayat', 'dua']);
 });

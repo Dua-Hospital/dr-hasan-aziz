@@ -47,6 +47,11 @@ export function clinicState(day: number, minutes: number, clinic: ClinicHours): 
   return { kind: 'done' };
 }
 
+/** The clinics that work on `day` (0 = Sunday), in their original order: the ones the day track draws. */
+export function clinicsOn<T extends ClinicHours>(day: number, clinics: readonly T[]): T[] {
+  return clinics.filter((c) => c.days[day]);
+}
+
 /** The next day (0 = Sunday) after `day` on which at least one clinic works; `day` itself if none do. */
 export function nextWorkingDay(day: number, clinics: readonly ClinicHours[]): number {
   for (let d = 1; d <= 7; d++) {

@@ -2,7 +2,7 @@
 
 import type { CSSProperties } from 'react';
 import { CLINICS, getContent, type Clinic } from '@/lib/content';
-import { TRACK_END, TRACK_START, formatClock, trackPercent, nextWorkingDay } from '@/lib/clinic-status';
+import { TRACK_END, TRACK_START, clinicsOn, formatClock, trackPercent, nextWorkingDay } from '@/lib/clinic-status';
 import type { Locale } from '@/lib/site';
 import { clinicLabel } from './clinicLabel';
 import { dotClass, useKarachiNow } from './useKarachiNow';
@@ -10,10 +10,13 @@ import { dotClass, useKarachiNow } from './useKarachiNow';
 // Tick labels sit at the real clinic boundaries (open and close times), placed by minutes —
 // not spread evenly — so they line up with the bars. Opening times anchor to the bar's start,
 // closing times to its end, so a short bar's two labels don't overlap.
-const TICKS = CLINICS.flatMap((x) => [
-  { m: x.openMin, edge: 'start' as const },
-  { m: x.closeMin, edge: 'end' as const },
-]).sort((a, b) => a.m - b.m);
+const ticksFor = (clinics: readonly Clinic[]) =>
+  clinics
+    .flatMap((x) => [
+      { m: x.openMin, edge: 'start' as const },
+      { m: x.closeMin, edge: 'end' as const },
+    ])
+    .sort((a, b) => a.m - b.m);
 const SEG_CLASS: Record<string, string> = { hayat: 'hy', dua: 'du' };
 
 /** "Where is he today?": the 9 AM – 11 PM track, the Now marker and one row per clinic (spec §7.3). */
@@ -22,6 +25,10 @@ export function TodayCard({ locale }: { locale: Locale }) {
   const now = useKarachiNow();
   const sunday = now !== null && !CLINICS.some((x) => x.days[now.day]); // no clinic works today
   const nextDay = now ? c.days[(nextWorkingDay(now.day, CLINICS) + 6) % 7] : '';
+  // Only today's clinics go on the track (Hayat is off on Friday, Dua on Sunday). Before hydration,
+  // and on a day with no clinic (that layout hides the track), draw them all.
+  const onTrack = now && !sunday ? clinicsOn(now.day, CLINICS) : CLINICS;
+  const offToday = (x: Clinic) => now !== null && !x.days[now.day];
   const name = (x: Clinic) => (locale === 'ur' ? x.nameUr : x.name);
   const date =
     now &&
@@ -43,7 +50,7 @@ export function TodayCard({ locale }: { locale: Locale }) {
       <div className={sunday ? 'is-sunday' : undefined}>
         <div className="track">
           <div className="rail" />
-          {CLINICS.map((x) => (
+          {onTrack.map((x) => (
             <div
               key={x.id}
               className={`seg ${SEG_CLASS[x.id] ?? ''}`}
@@ -65,7 +72,7 @@ export function TodayCard({ locale }: { locale: Locale }) {
           )}
         </div>
         <div className="ticks">
-          {TICKS.map((t) => (
+          {ticksFor(onTrack).map((t) => (
             <span key={t.m} className={t.edge} style={{ left: `${trackPercent(t.m)}%` }} dir="ltr">
               {formatClock(t.m)}
             </span>
@@ -78,9 +85,12 @@ export function TodayCard({ locale }: { locale: Locale }) {
               <div className="t-row" key={x.id}>
                 <span className={dotClass(live ? live.state : 'off')} />
                 <b className="t-name">{name(x).split(' ')[0]}</b>
-                <span className="t-time" dir="ltr">
-                  {formatClock(x.openMin)} – {formatClock(x.closeMin)}
-                </span>
+                {/* No hours on its day off: the row just says it is closed today. */}
+                {!offToday(x) && (
+                  <span className="t-time" dir="ltr">
+                    {formatClock(x.openMin)} – {formatClock(x.closeMin)}
+                  </span>
+                )}
                 <span className="t-status">{live?.text}</span>
               </div>
             );
