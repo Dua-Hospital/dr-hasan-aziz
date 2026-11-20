@@ -12,7 +12,7 @@ The page answers a patient's questions in one scroll: who the doctor is, whether
 | Styling | one hand-written `app/globals.css`, with the Figma brand tokens as CSS custom properties |
 | Output | fully static — `output: 'export'`, `trailingSlash: true`; `next build` writes plain HTML/CSS/JS to `out/` |
 | Dependencies | none beyond Next/React: no Tailwind, component library, icon font, animation library or test framework |
-| Pages | `/` English (LTR, Figtree) · `/ur/` Urdu (RTL, Gulzar) |
+| Pages | `/` English (LTR, Figtree) · `/ur/` Urdu (RTL, Noto Nastaliq Urdu) |
 | Booking | WhatsApp only, through `bookingHref()` in `lib/links.ts` |
 | Content | every string and data record in `lib/content.ts`, typed and mirrored for both locales |
 
@@ -51,7 +51,7 @@ Consequence, and it is deliberate: **the exported HTML must never contain a live
 
 | Path | Responsibility |
 |---|---|
-| `app/layout.tsx` | root metadata, Figtree + Gulzar via `next/font`, theme colour |
+| `app/layout.tsx` | root metadata, Figtree + Noto Nastaliq Urdu via `next/font`, theme colour |
 | `app/page.tsx`, `app/ur/page.tsx` | per-locale metadata (canonical, hreflang, OG/Twitter) and the page shell |
 | `app/sitemap.ts`, `app/robots.ts`, `app/icon.svg`, `app/not-found.tsx` | static SEO and system routes |
 | `components/Page.tsx` | composes the sections in order for a locale and injects the JSON-LD |

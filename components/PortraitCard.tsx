@@ -26,8 +26,8 @@ export function PortraitCard({ c, locale }: { c: SiteContent; locale: Locale }) 
       </div>
       <div className="side">
         <span className="overline">{p.sideOverline}</span>
-        <b style={{ fontSize: 22, lineHeight: '30px', color: 'var(--b900)' }}>{p.sideTitle}</b>
-        <span style={{ color: 'var(--n600)', fontSize: 15, lineHeight: '24px' }}>{p.sideSub}</span>
+        <b className="side-title">{p.sideTitle}</b>
+        <span className="side-sub">{p.sideSub}</span>
       </div>
       <div className="cred-bar">
         <div className="cred">

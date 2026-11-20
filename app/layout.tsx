@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next';
-import { Figtree, Gulzar } from 'next/font/google';
+import { Figtree, Noto_Nastaliq_Urdu } from 'next/font/google';
 import { SITE_URL } from '@/lib/site';
 import './globals.css';
 
@@ -10,10 +10,12 @@ const figtree = Figtree({
   display: 'swap',
 });
 
-const gulzar = Gulzar({
-  subsets: ['arabic', 'latin'],
-  weight: '400',
-  variable: '--font-gulzar',
+// Urdu: Noto Nastaliq Urdu, per the Dua Hospital brand guidelines (Figma, 02 Typography).
+// Variable font, 400–700: Regular body, Medium captions, SemiBold subheads, Bold headlines.
+const urdu = Noto_Nastaliq_Urdu({
+  subsets: ['arabic'],
+  weight: 'variable',
+  variable: '--font-ur',
   display: 'swap',
   preload: false,
 });
@@ -46,7 +48,7 @@ export default function RootLayout({
     <html
       lang="en"
       dir="ltr"
-      className={`${figtree.variable} ${gulzar.variable}`}
+      className={`${figtree.variable} ${urdu.variable}`}
     >
       <body>{children}</body>
     </html>

@@ -58,12 +58,12 @@ Colour usage:
 | Overline | 13/16 | 600 | uppercase, letter-spacing .1em, `--b600`, preceded by the numbered `.num` chip |
 | Button | 16/24 | 600 | 15px in compact places |
 
-**Urdu — Gulzar** (`--font-gulzar`), via the `.ur` class with `direction: rtl` and `line-height: 2`.
-Scoped scale on `[dir=rtl][lang=ur]`: body 20, H2 36/68, hero name `clamp(40px, 3vw + 20px, 56px)`/1.86.
+**Urdu — Noto Nastaliq Urdu**, per the Dua Hospital brand guidelines (Figma, "02 Typography" and "03 Urdu type scale"). Loaded in `app/layout.tsx` with `next/font/google` (variable, 400–700); used through `--font-ur-face` (`"Figtree","Noto Nastaliq Urdu"`) on the `.ur` class and the Urdu page. Figtree's files cover Latin only, so `MBBS`, `9:30 PM` and digits render in Figtree and every Urdu letter in Noto Nastaliq.
+Urdu sizes follow one rule: every Urdu text gets the Urdu step of the style its English version uses. The steps follow the brand's "03 Urdu type scale", set one notch smaller at the client's request (body and menu at 14px, below the brand's 16px minimum): Caption 14/14, Body S 14/14, Body 16/15, Body L 18/16, H4 20/16, H3 24/20, H2 30/24 desktop/mobile; Display 40 to 56 (the brand Display). Weights: Bold for H2 and up, SemiBold for H3–H4 and for text that is bold in English, Medium for captions, Regular otherwise. Line height 2 for running text, 1.8 for everything else (brand: 1.8–2×). The table and the generated selector lists are at the top of the Urdu block in `app/globals.css`; when you add or restyle English text, give its Urdu version the matching pair instead of a one-off size.
 
 Urdu rules:
 
-- Gulzar only. Never mix Gulzar and Figtree on one line.
+- Noto Nastaliq Urdu for Urdu letters, Figtree for Latin and digits inside Urdu (the brand guide notes Noto Nastaliq has no Latin).
 - Western digits everywhere (3, 7 PM), even in Urdu. Keep `MBBS` and `FCPS` in Latin script.
 - Urdu letterforms only: no Arabic `ه` `ي` `ك`; write `ہ` `ی` `ک`.
 - Add every new or changed Urdu string to `docs/urdu-review.md`. It is unreviewed until a native speaker signs off.

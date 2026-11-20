@@ -26,7 +26,7 @@ Node 22.18+ is required (native TypeScript type-stripping). Run `npm test` after
 
 - **No new dependencies.** No Tailwind, component library, icon font, animation library or test framework.
 - **All copy and data live in `lib/content.ts`**, for both `en` and `ur`, with identical shape. Components hold no literal copy: add the string to `SiteContent` and both dictionaries.
-- **New or changed Urdu strings also go in `docs/urdu-review.md`.** Urdu uses Gulzar only, Western digits, `MBBS`/`FCPS` in Latin script, and Urdu letterforms (never Arabic `ه` `ي` `ك`).
+- **New or changed Urdu strings also go in `docs/urdu-review.md`.** Urdu uses Noto Nastaliq Urdu (brand guidelines, Figma "02 Typography"), Western digits, `MBBS`/`FCPS` in Latin script, and Urdu letterforms (never Arabic `ه` `ي` `ك`).
 - **Server components by default.** Add `'use client'` only for state, effects or browser APIs. `SiteContent` contains functions, so client islands take `locale` and call `getContent(locale)` themselves.
 - **Exported HTML must never contain a live clinic status** — only the neutral "Open 7 days · see timings". Status is computed client-side in Asia/Karachi time through `lib/clinic-status.ts`.
 - **Booking goes through `bookingHref()`** in `lib/links.ts` (WhatsApp, new tab, `rel="noopener"`). No `tel:` links and no "Call" text except the 1122 emergency line.

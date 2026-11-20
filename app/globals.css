@@ -1,4 +1,7 @@
-:root{
+:root{/* Urdu text: Figtree's files cover Latin only (unicode-range), so it takes MBBS, 9:30 PM and digits, and every
+   Urdu letter falls through to Noto Nastaliq Urdu. Plain family names, not the next/font variables: those add
+   Arial/Times fallbacks with no range that would grab Urdu or Latin first. Both fonts are loaded in layout.tsx. */
+--font-ur-face:"Figtree","Noto Nastaliq Urdu";
   /* Brand — Scale/Blue */
   --b50:#F3F6FA;--b100:#E1EAF4;--b200:#BFD1E7;--b300:#8FAFD5;--b400:#5687C0;--b500:#2A67AF;--b600:#074EA2;--b700:#064188;--b800:#04346D;--b900:#03254F;
   /* Scale/Green */
@@ -16,7 +19,7 @@
 }
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:var(--font-figtree),system-ui,sans-serif;color:var(--n900);background:var(--bg);font-size:17px;line-height:28px;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-.ur{font-family:var(--font-gulzar),serif;line-height:2;direction:rtl}
+.ur{font-family:var(--font-ur-face),serif;line-height:2;direction:rtl}
 a{color:inherit;text-decoration:none}
 button{font:inherit}
 img{display:block;max-width:100%}
@@ -61,7 +64,7 @@ section{padding:120px 0 0;scroll-margin-top:90px}
 .nav-links{display:flex;gap:2px;margin-inline-start:auto}
 .nav-links a{white-space:nowrap;font-size:15px;font-weight:500;color:var(--n600);padding:8px 13px;border-radius:999px;transition:background .2s,color .2s}
 .nav-links a:hover{background:var(--b50);color:var(--b700)}
-.lang{font-family:var(--font-gulzar),serif;font-size:18px;line-height:1.7;height:40px;display:grid;place-items:center;padding:0 14px;border-radius:999px;border:1px solid var(--line);color:var(--b700)}
+.lang{font-family:var(--font-ur-face),serif;font-size:18px;line-height:1.7;height:40px;display:grid;place-items:center;padding:0 14px;border-radius:999px;border:1px solid var(--line);color:var(--b700)}
 .nav .btn{--h:48px;padding:0 20px;font-size:15px}
 .burger{display:none;width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:#fff;cursor:pointer;place-items:center;color:var(--b800)}
 .menu{display:none}
@@ -225,7 +228,7 @@ section{padding:120px 0 0;scroll-margin-top:90px}
 .tx:hover .ic{transform:rotate(-8deg);background:var(--b600);color:#fff}
 .tx .ic svg{width:22px;height:22px}
 .tx b{font-size:17px;line-height:22px;color:var(--b900)}
-.tx .ur{font-size:17px;line-height:1.6;color:var(--b600);direction:rtl;text-align:left;margin-top:9px}
+.tx .ur{font-size:17px;line-height:1.6;color:var(--b600);direction:rtl;text-align:left;margin-top:4px}
 .tx .en{font-family:var(--font-figtree),system-ui,sans-serif;font-size:14px;line-height:20px;font-weight:600;color:var(--b600);text-align:right;margin-top:2px}
 .tx p{grid-column:1/-1;font-size:14.5px;line-height:22px;color:var(--n500);margin-top:10px;padding-top:10px;border-top:1px dashed var(--line)}
 .tx.hide{display:none}
@@ -416,6 +419,8 @@ footer{margin-top:64px;background:var(--b900);color:var(--b200);padding:64px 0 3
   .menu .btn{margin-top:6px}
 }
 .h-photo .side{display:none}
+.h-photo .side-title{font-size:22px;line-height:30px;color:var(--b900)}
+.h-photo .side-sub{font-size:15px;line-height:24px;color:var(--n600)}
 @media (max-width:1080px){
   .h-main{grid-column:1/-1}
   .h-photo{grid-column:1/-1;grid-row:auto;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr auto}
@@ -476,7 +481,8 @@ footer{margin-top:64px;background:var(--b900);color:var(--b200);padding:64px 0 3
   .cl-act{flex-direction:column}
   .cl-act .btn{flex:none;width:100%}
   .week div{font-size:12px}
-  .book{padding:36px 22px;border-radius:28px}
+  .book{padding:36px 22px;border-radius:28px;grid-template-columns:minmax(0,1fr)}
+  .book .phone{width:100%;max-width:330px;justify-self:center} /* fixed 330px phone was wider than the card's 303px content box */
   .final{flex-direction:column;align-items:flex-start;padding:36px 24px;margin-top:88px}
   .final>div{flex-direction:column;align-items:flex-start}
   .final .btn{width:100%}
@@ -506,44 +512,119 @@ footer{margin-top:64px;background:var(--b900);color:var(--b200);padding:64px 0 3
 [dir=rtl] .to-top{right:auto;left:24px}
 @media (max-width:760px){[dir=rtl] .to-top{left:16px}}
 
-/* Urdu type scale (Gulzar) - scoped to the Urdu page wrapper only, so inline
-   lang=ur snippets on the English page keep their mockup sizes */
-[dir=rtl][lang=ur]{font-family:var(--font-gulzar),serif;font-size:20px;line-height:2.2;word-spacing:0.12em}
+/* ===== Urdu page typography (Noto Nastaliq Urdu) =====
+   One rule for every text: it gets the Urdu step of the style its English version uses. The steps follow the
+   brand's Urdu scale (Figma "03 Urdu type scale"), set one notch smaller per the client (body and menu at 14px):
+     English         Brand style            Urdu desktop / mobile   Urdu weight
+     <=14px          Caption, Label         14 / 14                 Medium (SemiBold where the English is bold)
+     14.5-16px       Body S, Button, Nav    14 / 14                 Regular (SemiBold where bold)
+     16.5-18.5px     Body                   16 / 15                 Regular (SemiBold where bold)
+     19-22px         Body L, H5             18 / 16                 Regular (SemiBold where bold)
+     23-28px         H4                     20 / 16                 SemiBold
+     29-36px         H3                     24 / 20                 SemiBold
+     37-44px         H2                     30 / 24                 Bold
+     Display         Display                40 to 56 (the brand Display), tracking the English hero   Bold
+   Line height is the brand's 1.8-2x: 2 for running text (paragraphs, leads), 1.8 for everything else.
+   The selector lists were generated from the English page; each matches exactly one English size. Scoped to the
+   Urdu page wrapper, so the inline lang=ur lines on the English page keep their own sizes. */
+[dir=rtl][lang=ur]{font-family:var(--font-ur-face),serif;font-size:16px;line-height:2;word-spacing:0.12em}
+[dir=rtl][lang=ur] *{line-height:1.8}
 [dir=rtl][lang=ur] :is(h1,h2,h3,h4,.h-name,.brand){letter-spacing:0}
-[dir=rtl][lang=ur] h2{font-size:36px;line-height:2.1;margin:20px 0 16px;padding-top:4px;word-spacing:0.15em}
-[dir=rtl][lang=ur] .h-name{font-size:clamp(40px,3vw + 20px,56px);line-height:2;padding-top:6px;word-spacing:0.15em}
-[dir=rtl][lang=ur] .nav-in{height:72px;padding:0 10px 0 14px;gap:12px}
-@media (max-width:760px){[dir=rtl][lang=ur] .nav-in{height:64px;padding:0 8px 0 10px}}
-[dir=rtl][lang=ur] .brand{gap:10px;line-height:1.3}
+[dir=rtl][lang=ur] :is(div.about-l > h2,div.sec-head > div > h2,div.book > div > h2,div.wrap.faq > div > h2){font-size:30px;font-weight:700;line-height:1.8}
+[dir=rtl][lang=ur] :is(div.card.h-main > div.h-ur.ur,div.cl-id > h3){font-size:20px;font-weight:600;line-height:1.8}
+[dir=rtl][lang=ur] :is(p.h-statement > strong){font-size:20px;font-weight:600;line-height:2}
+[dir=rtl][lang=ur] :is(div.about-l > p.lead,div.sec-head > div > p.lead,div.book > div > p.lead,div.wrap.faq > div > p.lead){font-size:18px;font-weight:400;line-height:2}
+[dir=rtl][lang=ur] :is(div.card.h-main > p.h-statement){font-size:18px;font-weight:500;line-height:2}
+[dir=rtl][lang=ur] :is(div.plate > div > div.nm,div.side > b.side-title,div.t-head > h3,ul.tl > li > b,ol.steps > li > div > b,div.ft-brand > div.nm){font-size:18px;font-weight:600;line-height:1.8}
+[dir=rtl][lang=ur] :is(nav.menu > a:not(.btn)){font-size:16px;font-weight:400;line-height:1.8}
+[dir=rtl][lang=ur] :is(div.card.acc > details > p,div.final > div > div > p){font-size:16px;font-weight:400;line-height:2}
+[dir=rtl][lang=ur] :is(a.brand > span,div.cred > div > b,a.card.rb > div > b,a.card.rb.wa-link > div > b,div.fact > b,li.ex > b,div.card.tx > b,div.card.ask > div > b,div.emerg > div > b,div.card.acc > details > summary){font-size:16px;font-weight:600;line-height:1.8}
+[dir=rtl][lang=ur] :is(div.side > span.side-sub,li.ex > span,div.card.ask > div > span,div.cl-time > span,div.cl-addr > div,div.wrap > div.holiday,ol.steps > li > div > span,div.emerg > div,nav.ft-links > a,div.ft-links > a.wa-link,div.ft-links > a){font-size:14px;font-weight:400;line-height:1.8}
+[dir=rtl][lang=ur] :is(ul.tl > li > span.where,div.card.tx > p,div.ft-brand > p){font-size:14px;font-weight:400;line-height:2}
+[dir=rtl][lang=ur] :is(nav.nav-links > a){font-size:14px;font-weight:500;line-height:1.8}
+[dir=rtl][lang=ur] :is(a.skip-link,div.nav-in > a.btn.btn-pri.wa-link,nav.menu > a.btn.btn-pri.wa-link,div.h-ctas > a.btn.btn-pri.wa-link,div.h-ctas > a.btn.btn-ghost,div.t-row > b.t-name,div.tabs > button,div.card.ask > a.btn.wa-link,div.cl-act > a.btn.btn-ghost,div.cl-act > a.btn.btn-pri.wa-link,div.book > div > a.btn.btn-pri.wa-link,div.final > a.btn.btn-pri.wa-link,div.ft-brand > a.btn.wa-link,div.ft-clinic > b,div.dock > a.btn.btn-ghost,div.dock > a.btn.btn-pri.wa-link){font-size:14px;font-weight:600;line-height:1.8}
+[dir=rtl][lang=ur] :is(div.cred > div > span,a.card.rb > div > span,a.card.rb.wa-link > div > span,div.fact > span,div.cl-addr > div > small,div.wa-top > div > small,div.chat > div.msg.me,div.chat > div.msg.them,div.ft > div > div.ft-note,div.ft-links > div.ft-emerg,div.ft-bottom > span.ft-copy){font-size:14px;font-weight:400;line-height:1.8}
+[dir=rtl][lang=ur] :is(div.card.h-main > p.h-note,div.plate > div > div.q){font-size:14px;font-weight:400;line-height:2}
+[dir=rtl][lang=ur] :is(a.brand > span > small,span.pill-status > b,div.t-head > span.d){font-size:14px;font-weight:500;line-height:1.8}
+[dir=rtl][lang=ur] :is(span.pill-status > span,div.card.h-main > div.overline.h-over,div.h-conds > span,div.h-conds > a,div.side > span.overline,div.cred > div > small,div.seg.hy > span.seg-t,div.seg.du > span.seg-t,div.t-row > span.t-status,div.about-l > span.overline,span.about-photo-badge > span,div.card.blk > h3,ul.tl > li > span.chip,li.ex > b > small,div.sec-head > div > span.overline,div.cl-map > span.label,span.badge > span,div.week > div,div.book > div > span.overline,div.wa-top > div > b,div.msg.them > b,div.wrap.faq > div > span.overline,div.ft-social > span.ft-follow,nav.ft-links > h4,div.ft > div > h4,div.ft-clinic > a,div.ft-links > h4,div.ft-emerg > b){font-size:14px;font-weight:600;line-height:1.8}
+@media (max-width:760px){
+  [dir=rtl][lang=ur] :is(div.about-l > h2,div.sec-head > div > h2,div.book > div > h2,div.wrap.faq > div > h2){font-size:24px}
+  [dir=rtl][lang=ur] :is(p.h-statement > strong,div.card.h-main > p.h-statement,div.plate > div > div.nm,div.side > b.side-title,div.t-head > h3,div.about-l > p.lead,ul.tl > li > b,div.sec-head > div > p.lead,div.book > div > p.lead,ol.steps > li > div > b,div.wrap.faq > div > p.lead,div.ft-brand > div.nm){font-size:16px}
+  [dir=rtl][lang=ur] :is(a.brand > span,nav.menu > a:not(.btn),div.cred > div > b,a.card.rb > div > b,a.card.rb.wa-link > div > b,div.fact > b,li.ex > b,div.card.tx > b,div.emerg > div > b,div.card.acc > details > p,div.final > div > div > p){font-size:15px}
+  [dir=rtl][lang=ur] :is(a.skip-link,nav.nav-links > a,nav.menu > a.btn.btn-pri.wa-link,div.side > span.side-sub,div.t-row > b.t-name,li.ex > span,div.tabs > button,div.card.ask > div > span,div.cl-time > span,div.cl-act > a.btn.btn-ghost,div.cl-act > a.btn.btn-pri.wa-link,div.wrap > div.holiday,ol.steps > li > div > span,div.emerg > div,div.ft-brand > p,div.ft-brand > a.btn.wa-link,nav.ft-links > a,div.ft-links > a.wa-link,div.ft-links > a,div.dock > a.btn.btn-ghost,div.dock > a.btn.btn-pri.wa-link){font-size:14px}
+}
+/* Display: the hero name, the brand's Urdu Display (40 on phones to 56), growing over the same widths as the English one. */
+[dir=rtl][lang=ur] .h-name{font-size:clamp(40px,2.241vw + 22.92px,56px);font-weight:700;line-height:1.8;word-spacing:0.15em}
+/* Final call-to-action heading: English clamp(26px, 1.6vw + 16px, 36px) is H3, so Urdu runs 20 to 24. */
+[dir=rtl][lang=ur] .final h2{font-size:clamp(20px,0.64vw + 16px,24px);font-weight:600;line-height:1.8}
+/* Clinic names inside the 28px day-track bars: caption size, with a line box that fits the bar. */
+[dir=rtl][lang=ur] .seg-t{line-height:1.3}
+
+/* ===== Urdu page layout and spacing (no font sizes below this line, except the Latin-only switch) ===== */
+[dir=rtl][lang=ur] h2{margin:12px 0 12px;word-spacing:0.15em}
+[dir=rtl][lang=ur] .h-statement{margin:14px 0 14px;word-spacing:0.14em}
+[dir=rtl][lang=ur] .h-statement strong{margin-bottom:4px;letter-spacing:0;word-spacing:0.16em}
+[dir=rtl][lang=ur] .lead{word-spacing:0.1em}
+[dir=rtl][lang=ur] .nav-in{height:auto;min-height:72px;padding:0 10px 0 14px;gap:12px}
+@media (max-width:760px){[dir=rtl][lang=ur] .nav-in{min-height:64px;padding:0 8px 0 10px}}
+/* Phones: the Urdu clinic name and its live badge don't fit side by side, so the badge drops below the name. */
+@media (max-width:760px){[dir=rtl][lang=ur] .cl-top{flex-wrap:wrap}}
+[dir=rtl][lang=ur] .brand{gap:10px}
 [dir=rtl][lang=ur] .brand span{display:flex;flex-direction:column;gap:0;justify-content:center}
-[dir=rtl][lang=ur] .brand > span{font-size:17px;line-height:1.4}
-[dir=rtl][lang=ur] .nav-links{align-items:center;gap:4px}
-[dir=rtl][lang=ur] .nav-links a{font-size:16px;line-height:1.6;padding:5px 14px;display:inline-flex;align-items:center}
-[dir=rtl][lang=ur] .nav .btn{--h:46px;font-size:15px;line-height:1.5;padding:0 18px}
+/* Header brand: two stacked Urdu lines. The name's tails need room before the subtitle's tall strokes, and the pair's
+   drawn text is centred on the logo (Nastaliq draws above its line box, hence the extra room at the top). */
+[dir=rtl][lang=ur] .nav .brand > span{line-height:1.5;gap:5px;padding-top:6px}
+/* Phones under 421px hide the subtitle: the name stands alone, so no extra top room. */
+@media (max-width:420px){[dir=rtl][lang=ur] .nav .brand > span{padding-top:0}}
+[dir=rtl][lang=ur] .nav .brand small{line-height:1.5}
+/* With the full menu showing (1181px+, header capped at 1192px) everything fits on one line at 14px: keep the
+   brand and the button whole and let nothing wrap. */
+@media (min-width:1181px){[dir=rtl][lang=ur] :is(.nav .btn,.nav .brand){flex:none}[dir=rtl][lang=ur] :is(.nav .brand > span,.nav .brand small){white-space:nowrap}}
+[dir=rtl][lang=ur] .nav-links{align-items:center;gap:2px}
+[dir=rtl][lang=ur] .nav-links a{display:inline-flex;align-items:center}
+[dir=rtl][lang=ur] .nav .btn{--h:46px;padding:0 18px}
 [dir=rtl][lang=ur] .lang{height:38px;padding:0 12px}
-[dir=rtl][lang=ur] .h-statement{line-height:2.2;margin:22px 0 20px;word-spacing:0.14em}
-[dir=rtl][lang=ur] .h-statement strong{line-height:2.1;margin-bottom:8px;letter-spacing:0;word-spacing:0.16em}
-[dir=rtl][lang=ur] .lead{line-height:2.2;word-spacing:0.1em}
-/* Urdu badges, pills and small labels (brand: Urdu ≥16px, line-height 1.8–2).
-   No letter-spacing — it pulls joined Urdu letters apart — and no fixed heights, which clip dots and tails. */
-[dir=rtl][lang=ur] :is(.overline,.cred small,.ex b small,.cl-map .label,.tl .chip,.q-bar .tag,.badge,.pill-status,.pill-status b,.h-conds span,.h-conds a,.tabs button,.week div,.blk h3,.ft h4,.ft-note,.t-status){letter-spacing:0;text-transform:none}
-[dir=rtl][lang=ur] :is(.overline,.cred small,.ex b small,.cl-map .label,.tl .chip,.q-bar .tag,.badge,.pill-status,.h-conds span,.h-conds a,.blk h3,.ft h4,.brand small){font-size:16px;line-height:1.8}
-[dir=rtl][lang=ur] :is(.h-conds span,.h-conds a,.tabs button){height:auto;min-height:38px;padding-block:4px}
-[dir=rtl][lang=ur] :is(.week div,.cl-time span,.cl-addr small,.h-note,.t-status){font-size:16px;line-height:1.8}
-/* Gulzar leaves ~9px of empty descent under the text while tall letters (ٹ گ ک) and their marks rise above it,
-   so equal padding reads as text pushed to the top. More room on top than below balances the ink;
-   in flex pills the dot moves with the content box, so it stays level with the letters. */
-[dir=rtl][lang=ur] :is(.pill-status,.badge,.tl .chip,.q-bar .tag,.cl-map .label){padding-block:8px 2px;padding-inline:12px}
-[dir=rtl][lang=ur] :is(.h-conds span,.h-conds a){padding-block:7px 1px}
-/* The Latin section number sits on the box centre; Gulzar's letters sit ~3px lower. */
-[dir=rtl][lang=ur] .overline .num{transform:translateY(3px)}
+/* No letter-spacing or capitals on Urdu labels (they pull joined letters apart), and no fixed heights (they clip dots and tails). */
+[dir=rtl][lang=ur] :is(.overline,.cred small,.ex b small,.cl-map .label,.tl .chip,.q-bar .tag,.badge,.pill-status,.pill-status b,.h-conds span,.h-conds a,.tabs button,.week div,.blk h3,.ft h4,.ft-note,.t-status,.ft-follow){letter-spacing:0;text-transform:none}
+/* Urdu pills, badges and buttons: centre the whole drawn text, not the line box. Measured at 14px (Noto Nastaliq,
+   line height 1.8): the tall strokes and marks (ک گ ٹ ڈ, dots) rise 9-12px above the top of the text line, while the tails
+   end at its bottom edge. So the padding is uneven by that amount (more on top), which gives the drawn text equal room
+   above and below; flat pills keep 3px clear of the border. Dots, counts and icons are centred on the content box,
+   so they are moved back up by half the difference to stay on the pill's true centre. Checked magnified: centring the
+   full extent still reads ~2px low (most letters sit below the few tall marks), so every pill is lifted 2px from it. */
+[dir=rtl][lang=ur] .pill-status{padding:13px 12px 7px}
+[dir=rtl][lang=ur] .pill-status > .live{position:relative;top:-3px}
+[dir=rtl][lang=ur] .badge{padding:14.5px 12px 3.5px}
+[dir=rtl][lang=ur] .badge > .live{position:relative;top:-5.5px}
+[dir=rtl][lang=ur] .tl .chip{padding:11px 12px 3px}
+[dir=rtl][lang=ur] .q-bar .tag{padding:10px 12px 4px}
+[dir=rtl][lang=ur] .cl-map .label{padding:7px 12px 8px}
+[dir=rtl][lang=ur] :is(.h-conds span,.h-conds a){height:auto;min-height:0;padding-block:11.5px 6.5px}
+[dir=rtl][lang=ur] .h-conds span::before{position:relative;top:-2.5px}
+[dir=rtl][lang=ur] .h-conds a svg{position:relative;top:-2.5px}
+[dir=rtl][lang=ur] .tabs button{height:auto;min-height:0;padding-block:11px 5px}
+[dir=rtl][lang=ur] .tabs button .ct{position:relative;top:-3px}
+[dir=rtl][lang=ur] .week div{padding:6px 0 5px}
+[dir=rtl][lang=ur] .about-photo-badge{padding-block:11px 4px}
+[dir=rtl][lang=ur] .about-photo-badge svg{position:relative;top:-3.5px}
+/* Buttons keep their fixed height: only the split moves (10px more on top), and the icons go back up 5px. */
+[dir=rtl][lang=ur] :is(.nav .btn,.btn){padding-top:5px;padding-bottom:0}
+[dir=rtl][lang=ur] .btn svg{position:relative;top:-2.5px}
+/* "Ask on WhatsApp" has fewer tall strokes than the other labels: less top padding centres it. */
+[dir=rtl][lang=ur] .card.ask .btn{padding-top:3px}
+[dir=rtl][lang=ur] .card.ask .btn svg{top:-1.5px}
+[dir=rtl][lang=ur] .nav-links a{padding:10px 7px 8px}
+[dir=rtl][lang=ur] .overline .num{transform:none}
 /* Phone dock: the Urdu booking label is long and "اوقات" is short, so give booking the larger share. */
 [dir=rtl][lang=ur] .dock .wa-link{flex:1.7}
-/* Treatment card titles: Gulzar needs more line height than the 22px Latin line. */
-[dir=rtl][lang=ur] .tx b{font-size:18px;line-height:1.7}
-[dir=rtl][lang=ur] .ft-follow{font-size:16px;line-height:1.8;letter-spacing:0;text-transform:none}
-[dir=rtl][lang=ur] :is(.tabs .ct,.ticks,.ticks span,.cl-time b,.t-time){font-family:var(--font-figtree),system-ui,sans-serif;direction:ltr}
-/* The language switch on the Urdu page reads "English": set it in Figtree, not Gulzar. */
+/* Latin-only parts (times, counts) stay in Figtree at their English sizes. */
+[dir=rtl][lang=ur] :is(.tabs .ct,.ticks,.ticks span,.cl-time b,.t-time){font-family:var(--font-figtree),system-ui,sans-serif;direction:ltr;line-height:1.25}
+/* The count is LTR (digits), so its own inline-start is the left: put the gap on the label side explicitly. */
+[dir=rtl][lang=ur] .tabs .ct{margin-inline:0;margin-right:6px}
+/* Today rows: keep the hours whole; the longer Urdu status drops to its own line when the row is narrow. */
+[dir=rtl][lang=ur] .t-row{flex-wrap:wrap;row-gap:2px}
+[dir=rtl][lang=ur] .t-row .t-time{white-space:nowrap}
+/* The language switch on the Urdu page reads "English": Figtree, at the English size. */
 [dir=rtl][lang=ur] .lang{font-family:var(--font-figtree),system-ui,sans-serif;font-size:15px;font-weight:600;line-height:1}
 
 .about-photo-card{position:relative;border-radius:var(--r-md);overflow:hidden;border:1px solid var(--line);background:var(--n100);box-shadow:var(--sh);aspect-ratio:16/10}
