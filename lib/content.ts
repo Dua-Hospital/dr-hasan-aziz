@@ -262,9 +262,9 @@ export interface SiteContent {
 
 const en: SiteContent = {
   meta: {
-    title: 'Dr. Hasan Aziz — Consultant Physician in Multan',
+    title: 'Dr. Hasan Aziz — Consultant Physician & Medical Specialist in Multan',
     description:
-      'Dr. Hasan Aziz (MBBS, FCPS Medicine), Medical Director of Dua Hospital and consultant physician at Dua Hospital and Hayat Medical Center, Multan. Treatment for diabetes, blood pressure, fever, heart, liver, kidney, allergy and asthma. Open every day. Book on WhatsApp.',
+      'Dr. Hasan Aziz (MBBS, FCPS Medicine), Medical Director of Dua Hospital and consultant physician and medical specialist at Dua Hospital and Hayat Medical Center, Multan. Treatment for diabetes, blood pressure, fever, heart, liver, kidney, allergy and asthma. Open every day. Book on WhatsApp.',
     keywords: [
       'Dr Hasan Aziz',
       'doctor in Multan',
@@ -289,7 +289,7 @@ const en: SiteContent = {
     faq: 'Questions',
     cta: 'Book on WhatsApp',
     menu: 'Menu',
-    subtitle: 'Consultant Physician · Multan',
+    subtitle: 'Consultant Physician & Medical Specialist · Multan',
   },
   status: {
     neutral: 'Open 7 days · see timings',
@@ -310,8 +310,8 @@ const en: SiteContent = {
     noClinicNote: (day) => `Both clinics are closed today. Send a WhatsApp message to book for ${day}.`,
   },
   hero: {
-    overline: 'Consultant Physician · FCPS Medicine',
-    urLine: 'ڈاکٹر حسن عزیز · کنسلٹنٹ فزیشن',
+    overline: 'Consultant Physician & Medical Specialist · FCPS Medicine',
+    urLine: 'ڈاکٹر حسن عزیز · کنسلٹنٹ فزیشن اور میڈیکل سپیشلسٹ',
     lineStrong: ['Sugar. Blood pressure.', "Fever that won't go away."],
     lineRest: 'One specialist who finds the cause and treats it.',
     chips: ['Diabetes', 'Blood pressure', 'Fever & dengue', 'Cough & asthma', 'Acidity & ulcer', 'Jaundice & hepatitis', 'Heart disease'],
@@ -322,9 +322,9 @@ const en: SiteContent = {
   },
   portrait: {
     plateTitle: 'Dr. Hasan Aziz',
-    plateSub: 'Consultant Physician, Multan',
+    plateSub: 'Consultant Physician & Medical Specialist, Multan',
     sideOverline: 'About Me',
-    sideTitle: 'Medical Director at Dua Hospital and Consultant Physician',
+    sideTitle: 'Medical Director at Dua Hospital · Consultant Physician & Medical Specialist',
     sideSub: 'Adult medicine: sudden illness and long-term care.',
     degreeLabel: 'Degree',
     degree: 'MBBS',
@@ -344,7 +344,7 @@ const en: SiteContent = {
     overline: 'About Me',
     heading: 'A specialist who listens first.',
     lead:
-      'Dr. Hasan Aziz is the Medical Director of Dua Hospital, Multan, and a consultant physician at Dua Hospital and Hayat Medical Center. He treats adults for everyday illness, such as fever, cough and infections, and for long-term conditions, such as diabetes and high blood pressure.',
+      'Dr. Hasan Aziz is the Medical Director of Dua Hospital, Multan, and a consultant physician and medical specialist at Dua Hospital and Hayat Medical Center. He treats adults for everyday illness, such as fever, cough and infections, and for long-term conditions, such as diabetes and high blood pressure.',
     lead2: 'If you need a surgeon or another specialist, he explains why and guides you to the right one.',
     photoBadge: 'Clinical Consultation',
     facts: [
@@ -356,7 +356,7 @@ const en: SiteContent = {
       { title: 'MBBS', chip: 'Degree', where: 'Army Medical College, Rawalpindi' },
       { title: 'FCPS (Medicine)', chip: 'Specialist', where: 'College of Physicians & Surgeons Pakistan' },
       { title: 'Medical Director', chip: 'Current', where: 'Dua Hospital, Multan', current: true },
-      { title: 'Consultant Physician', chip: 'Current', where: 'Dua Hospital & Hayat Medical Center, Multan', current: true },
+      { title: 'Consultant Physician & Medical Specialist', chip: 'Current', where: 'Dua Hospital & Hayat Medical Center, Multan', current: true },
     ],
     visitHeading: 'Your visit, step by step',
     visit: [
@@ -428,7 +428,7 @@ const en: SiteContent = {
     cta: 'Book on WhatsApp',
   },
   footer: {
-    tagline1: 'Consultant Physician · FCPS Medicine',
+    tagline1: 'Consultant Physician & Medical Specialist · FCPS Medicine',
     tagline2: 'MBBS, Army Medical College',
     onPage: 'On this page',
     clinicsHeading: 'Clinics',
@@ -449,9 +449,9 @@ const ABOUT_UR = 'میرے بارے میں';
 
 const ur: SiteContent = {
   meta: {
-    title: 'ڈاکٹر حسن عزیز — کنسلٹنٹ فزیشن، ملتان',
+    title: 'ڈاکٹر حسن عزیز — کنسلٹنٹ فزیشن اور میڈیکل سپیشلسٹ، ملتان',
     description:
-      'ڈاکٹر حسن عزیز (MBBS، FCPS میڈیسن)، میڈیکل ڈائریکٹر دعا ہسپتال، اور کنسلٹنٹ فزیشن، دعا ہسپتال اور حیات میڈیکل سنٹر ملتان۔ شوگر، بلڈ پریشر، بخار، دل، جگر، گردے، الرجی اور دمہ کا علاج۔ ہر روز۔ اپوائنٹمنٹ واٹس ایپ پر۔',
+      'ڈاکٹر حسن عزیز (MBBS، FCPS میڈیسن)، میڈیکل ڈائریکٹر دعا ہسپتال، اور کنسلٹنٹ فزیشن اور میڈیکل سپیشلسٹ، دعا ہسپتال اور حیات میڈیکل سنٹر ملتان۔ شوگر، بلڈ پریشر، بخار، دل، جگر، گردے، الرجی اور دمہ کا علاج۔ ہر روز۔ اپوائنٹمنٹ واٹس ایپ پر۔',
     keywords: [
       'ڈاکٹر حسن عزیز',
       'ڈاکٹر ملتان',
@@ -476,7 +476,7 @@ const ur: SiteContent = {
     faq: 'سوالات',
     cta: BOOK_UR,
     menu: 'مینو',
-    subtitle: 'کنسلٹنٹ فزیشن · ملتان',
+    subtitle: 'کنسلٹنٹ فزیشن اور میڈیکل سپیشلسٹ · ملتان',
   },
   status: {
     neutral: 'ہفتے کے ساتوں دن · اوقات دیکھیں',
@@ -498,8 +498,8 @@ const ur: SiteContent = {
     noClinicNote: (day) => `آج دونوں کلینک بند ہیں۔ ${day} کی اپوائنٹمنٹ کے لیے واٹس ایپ پر پیغام بھیجیں۔`,
   },
   hero: {
-    overline: 'کنسلٹنٹ فزیشن · FCPS میڈیسن',
-    urLine: 'کنسلٹنٹ فزیشن · ملتان',
+    overline: 'کنسلٹنٹ فزیشن اور میڈیکل سپیشلسٹ · FCPS میڈیسن',
+    urLine: 'کنسلٹنٹ فزیشن اور میڈیکل سپیشلسٹ · ملتان',
     lineStrong: ['شوگر۔ بلڈ پریشر۔', 'ایسا بخار جو جاتا ہی نہیں۔'],
     lineRest: 'ایک سپیشلسٹ جو وجہ ڈھونڈ کر علاج کرتے ہیں۔',
     chips: ['شوگر', 'بلڈ پریشر', 'بخار اور ڈینگی', 'کھانسی اور دمہ', 'تیزابیت اور السر', 'یرقان اور ہیپاٹائٹس', 'دل کے امراض'],
@@ -510,9 +510,9 @@ const ur: SiteContent = {
   },
   portrait: {
     plateTitle: 'ڈاکٹر حسن عزیز',
-    plateSub: 'کنسلٹنٹ فزیشن، ملتان',
+    plateSub: 'کنسلٹنٹ فزیشن اور میڈیکل سپیشلسٹ، ملتان',
     sideOverline: ABOUT_UR,
-    sideTitle: 'دعا ہسپتال کے میڈیکل ڈائریکٹر اور کنسلٹنٹ فزیشن',
+    sideTitle: 'دعا ہسپتال کے میڈیکل ڈائریکٹر · کنسلٹنٹ فزیشن اور میڈیکل سپیشلسٹ',
     sideSub: 'بڑوں کا علاج: اچانک بیماری اور لمبے عرصے کی دیکھ بھال۔',
     degreeLabel: 'ڈگری',
     degree: 'MBBS',
@@ -532,7 +532,7 @@ const ur: SiteContent = {
     overline: ABOUT_UR,
     heading: 'ایک سپیشلسٹ جو پہلے آپ کی پوری بات سنتے ہیں۔',
     lead:
-      'ڈاکٹر حسن عزیز دعا ہسپتال، ملتان کے میڈیکل ڈائریکٹر ہیں اور دعا ہسپتال اور حیات میڈیکل سنٹر میں کنسلٹنٹ فزیشن ہیں۔ وہ بڑوں کا علاج کرتے ہیں: روزمرہ بیماریوں جیسے بخار، کھانسی اور انفیکشن، اور لمبے عرصے کی بیماریاں جیسے شوگر اور ہائی بلڈ پریشر۔',
+      'ڈاکٹر حسن عزیز دعا ہسپتال، ملتان کے میڈیکل ڈائریکٹر ہیں اور دعا ہسپتال اور حیات میڈیکل سنٹر میں کنسلٹنٹ فزیشن اور میڈیکل سپیشلسٹ ہیں۔ وہ بڑوں کا علاج کرتے ہیں: روزمرہ بیماریوں جیسے بخار، کھانسی اور انفیکشن، اور لمبے عرصے کی بیماریاں جیسے شوگر اور ہائی بلڈ پریشر۔',
     lead2: 'اگر آپ کو سرجن یا کسی اور سپیشلسٹ کی ضرورت ہو تو وہ وجہ سمجھاتے ہیں اور صحیح ڈاکٹر تک پہنچنے میں مدد کرتے ہیں۔',
     photoBadge: 'کلینیکل معائنہ و مشاورت',
     facts: [
@@ -544,7 +544,7 @@ const ur: SiteContent = {
       { title: 'MBBS', chip: 'ڈگری', where: 'آرمی میڈیکل کالج، راولپنڈی' },
       { title: 'FCPS (میڈیسن)', chip: 'سپیشلسٹ', where: 'کالج آف فزیشنز اینڈ سرجنز پاکستان' },
       { title: 'میڈیکل ڈائریکٹر', chip: 'موجودہ', where: 'دعا ہسپتال، ملتان', current: true },
-      { title: 'کنسلٹنٹ فزیشن', chip: 'موجودہ', where: 'دعا ہسپتال اور حیات میڈیکل سنٹر، ملتان', current: true },
+      { title: 'کنسلٹنٹ فزیشن اور میڈیکل سپیشلسٹ', chip: 'موجودہ', where: 'دعا ہسپتال اور حیات میڈیکل سنٹر، ملتان', current: true },
     ],
     visitHeading: 'آپ کا چیک اپ، قدم بہ قدم',
     visit: [
@@ -616,7 +616,7 @@ const ur: SiteContent = {
     cta: BOOK_UR,
   },
   footer: {
-    tagline1: 'کنسلٹنٹ فزیشن · FCPS میڈیسن',
+    tagline1: 'کنسلٹنٹ فزیشن اور میڈیکل سپیشلسٹ · FCPS میڈیسن',
     tagline2: 'MBBS، آرمی میڈیکل کالج',
     onPage: 'اس صفحے پر',
     clinicsHeading: 'کلینک',

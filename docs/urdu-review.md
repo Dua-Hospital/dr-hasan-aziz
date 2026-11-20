@@ -241,3 +241,19 @@ Every Urdu string in the new content, by key. Repeated text is listed once, unde
 
 - footer.followDoctor — ڈاکٹر حسن کو فالو کریں
 - footer.followClinic — «{name} کو فالو کریں» (screen-reader label for the Dua Hospital icons, e.g. «دعا ہسپتال کو فالو کریں»)
+
+## 2026-11-21 — Specialty: Consultant Physician & Medical Specialist
+
+The role now reads «کنسلٹنٹ فزیشن اور میڈیکل سپیشلسٹ» everywhere it appears:
+
+- meta.title — ڈاکٹر حسن عزیز — کنسلٹنٹ فزیشن اور میڈیکل سپیشلسٹ، ملتان
+- meta.description (role part) — میڈیکل ڈائریکٹر دعا ہسپتال، اور کنسلٹنٹ فزیشن اور میڈیکل سپیشلسٹ، دعا ہسپتال اور حیات میڈیکل سنٹر ملتان۔
+- nav.subtitle — کنسلٹنٹ فزیشن اور میڈیکل سپیشلسٹ · ملتان
+- hero.overline — کنسلٹنٹ فزیشن اور میڈیکل سپیشلسٹ · FCPS میڈیسن
+- hero.urLine — کنسلٹنٹ فزیشن اور میڈیکل سپیشلسٹ · ملتان
+- hero.urLine (English page) — ڈاکٹر حسن عزیز · کنسلٹنٹ فزیشن اور میڈیکل سپیشلسٹ
+- portrait.plateSub — کنسلٹنٹ فزیشن اور میڈیکل سپیشلسٹ، ملتان
+- portrait.sideTitle — دعا ہسپتال کے میڈیکل ڈائریکٹر · کنسلٹنٹ فزیشن اور میڈیکل سپیشلسٹ
+- about.lead (opening) — …اور دعا ہسپتال اور حیات میڈیکل سنٹر میں کنسلٹنٹ فزیشن اور میڈیکل سپیشلسٹ ہیں۔
+- about.quals — کنسلٹنٹ فزیشن اور میڈیکل سپیشلسٹ · موجودہ
+- footer.tagline1 — کنسلٹنٹ فزیشن اور میڈیکل سپیشلسٹ · FCPS میڈیسن

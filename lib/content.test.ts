@@ -100,7 +100,7 @@ test('About Me label', () => {
 test('Medical Director of Dua Hospital', () => {
   assert.ok(en.about.lead.includes('Medical Director of Dua Hospital'));
   assert.ok(en.meta.description.includes('Medical Director of Dua Hospital'));
-  assert.deepEqual(en.about.quals.map((q) => q.title), ['MBBS', 'FCPS (Medicine)', 'Medical Director', 'Consultant Physician']);
+  assert.deepEqual(en.about.quals.map((q) => q.title), ['MBBS', 'FCPS (Medicine)', 'Medical Director', 'Consultant Physician & Medical Specialist']);
   assert.ok(ur.about.lead.includes('میڈیکل ڈائریکٹر'));
   assert.equal(ur.about.quals.length, en.about.quals.length);
 });
@@ -125,6 +125,19 @@ test('Dua Hospital logo files exist', () => {
     assert.ok(existsSync(new URL(`../public${file}`, import.meta.url)), file);
   }
   assert.equal(CLINICS.find((x) => x.id === 'hayat')!.logo, undefined);
+});
+
+test('specialty: Consultant Physician & Medical Specialist, in both languages', () => {
+  const role = 'Consultant Physician & Medical Specialist';
+  const roleUr = 'کنسلٹنٹ فزیشن اور میڈیکل سپیشلسٹ';
+  for (const s of [en.meta.title, en.nav.subtitle, en.hero.overline, en.portrait.plateSub, en.portrait.sideTitle, en.footer.tagline1]) {
+    assert.ok(s.includes(role), s);
+  }
+  for (const s of [ur.meta.title, ur.nav.subtitle, ur.hero.overline, ur.hero.urLine, ur.portrait.plateSub, ur.portrait.sideTitle, ur.footer.tagline1]) {
+    assert.ok(s.includes(roleUr), s);
+  }
+  // No bare "Consultant Physician" left as a role title.
+  assert.ok(!/Consultant Physician(?! & Medical Specialist)/.test(JSON.stringify(en)));
 });
 
 test('neutral status', () => {
